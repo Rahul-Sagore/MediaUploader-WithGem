@@ -1,0 +1,21 @@
+<%= form_for :user, :url =>{:controller => "users", :action => "create_user"} do |f| %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, :class => "form-input" %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password, :class => "form-input" %>
+  </div>
+  <div class="field">
+    <%= f.label :role %>
+    <%= f.radio_button :role, 'admin' %> Is Admin? <div class="small-font note">(Ignore if you are a normal user)</div>
+  </div>
+  <div class="actions">
+    <%= f.submit "SIGNUP", :class => "form-btn" %>
+  </div>
+<% end %>
+
+<div class="text-center">
+  Or Go to <%= link_to 'Login', "/login"%>
+</div>

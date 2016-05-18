@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Media Uploader</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<h1>
+	<img class="upload-logo" src="http://icons.iconarchive.com/icons/elegantthemes/beautiful-flat/128/upload-icon.png">
+	Media Uploader
+	<% if !session[:user_id].nil? %>
+		<span class="logout">
+			<%= link_to 'Logout', logout_path, :method => :delete %>
+			(<%= @current_user.email %>
+			<%= @current_user.role.upcase %>)
+		</span>
+	<% end %>
+</h1>
+
+<% flash.each do |key, value| %>
+	<div class="alert alert-<%= key %>">
+		<%= value %>
+	</div>
+<% end %>
+<%= yield %>
+
+</body>
+</html>
