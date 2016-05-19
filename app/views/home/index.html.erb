@@ -2,7 +2,7 @@
 	<div class="container media-form">
 		<%= form_for :new_media, :url =>{:controller => "home",:action => "upload"}, :html => {:multipart => true} do |f| %>
 			<div class="file-wrapper">
-		  	<%= f.file_field :name, :class => "custom-file-input" %>
+		  	<%= f.file_field :media_file, :class => "custom-file-input" %>
 		  </div>
 		  <%= f.label "Choose file..", :for => "new_media_name", :class => "file-name" %>
 		  <%= f.submit "UPLOAD", :class => "form-btn" %>
@@ -13,14 +13,11 @@
 <% if @media.length > 0 %>
 	<div class="container standard">
 		<h4 class="text-center">LIST OF UPLOADS</h4>
-		<div class="media-table">
-			<div class="col col-1 bold">
+		<div class="media-table header">
+			<div class="col col-6 bold text-center">
 				File Name
 			</div>
-			<div class="col col-2 bold">
-				File Type
-			</div>
-			<div class="col col-3 bold">
+			<div class="col col-6 bold text-center">
 				<% if @current_user[:role] != 'admin' %>
 					Action
 				<% end %>
@@ -36,20 +33,17 @@
 	<div class="media-table ">
 
 		<% @media.each do |medium| %>
-		   	<div class="col col-1">
-					<%= medium.filename %>
-				</div>
-				<div class="col col-2">
-					<%= medium.mime_type %>
-				</div>
-				<div class="col col-3">
-					<% if @current_user[:role] != 'admin' %>
-						<%= link_to 'Delete', medium, :confirm => 'Are you sure?', :method => :delete %>
-					<% end %>
-					<% if @current_user[:role] == 'admin' %>
-						<%= medium[:user_id] %>
-					<% end %>
-				</div>
+			<div class="col col-6">
+				<%= medium[:filename] %>
+			</div>
+			<div class="col col-6 text-center">
+				<% if @current_user[:role] != 'admin' %>
+					<%= link_to 'Delete', medium, :confirm => 'Are you sure?', :method => :delete %>
+				<% end %>
+				<% if @current_user[:role] == 'admin' %>
+					<%= medium[:user_id] %>
+				<% end %>
+			</div>
 		<% end %>
 	</div>
 </div>

@@ -10,7 +10,7 @@
 <h1>
 	<img class="upload-logo" src="http://icons.iconarchive.com/icons/elegantthemes/beautiful-flat/128/upload-icon.png">
 	Media Uploader
-	<% if !session[:user_id].nil? %>
+	<% if !session[:user_id].nil? && session[:user_id] != false %>
 		<span class="logout">
 			<%= link_to 'Logout', logout_path, :method => :delete %>
 			(<%= @current_user.email %>

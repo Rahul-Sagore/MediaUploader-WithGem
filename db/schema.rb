@@ -13,9 +13,8 @@
 ActiveRecord::Schema.define(:version => 20160518053822) do
 
   create_table "media", :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "media_file"
     t.string   "filename"
-    t.string   "mime_type"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
