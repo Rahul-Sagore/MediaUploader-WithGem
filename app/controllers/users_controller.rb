@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	puts session[:user_id].nil?
 
   def index
+    redirect_to "/users/sign_up"
   end
 
   def new

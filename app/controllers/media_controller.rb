@@ -4,7 +4,7 @@ class MediaController < ApplicationController
   # DELETE /media/1.xml
   def destroy
     @medium = Medium.find(params[:id])
-    File.delete(Rails.root.join('public', 'images/uploads/', session[:user_id].to_s, @medium.filename))
+    File.delete(Rails.root.join('public', 'images/uploads/', current_user.id.to_s, @medium.filename))
     
     @medium.destroy
 

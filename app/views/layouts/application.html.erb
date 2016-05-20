@@ -10,12 +10,18 @@
 <h1>
 	<img class="upload-logo" src="http://icons.iconarchive.com/icons/elegantthemes/beautiful-flat/128/upload-icon.png">
 	Media Uploader
-	<% if !session[:user_id].nil? && session[:user_id] != false %>
-		<span class="logout">
-			<%= link_to 'Logout', logout_path, :method => :delete %>
-			(<%= @current_user.email %>
-			<%= @current_user.role.upcase %>)
-		</span>
+	<% if user_signed_in? %> 
+	  <span class="logout">
+	  	<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>   
+	  	<%= current_user.email %>
+	  </span>
+	  <% if !current_user.admin? %>
+	  	<div class="admin-access">
+	  		<!-- <a> -->
+					<button class="form-btn">Make me admin</button>
+				<!-- </a> -->
+			</div>
+		<% end %>    
 	<% end %>
 </h1>
 
@@ -24,6 +30,7 @@
 		<%= value %>
 	</div>
 <% end %>
+
 <%= yield %>
 
 </body>

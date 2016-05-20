@@ -5,3 +5,4 @@ gem 'sqlite3'
 gem 'rake', '10.0.3'
 
 gem 'carrierwave'
+gem 'devise'

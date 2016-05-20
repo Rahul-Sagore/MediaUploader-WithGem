@@ -1,4 +1,8 @@
 MediaUploader::Application.routes.draw do
+  devise_for :admins
+
+  devise_for :users
+
   get "sessions/new"
 
   get "users/index"
@@ -12,6 +16,7 @@ MediaUploader::Application.routes.draw do
   root :to => "home#index"
 
   post "upload" => "home#upload"
+  get "download" => "home#download"
 
   get "signup" => "users#new"
   post "create_user" => "users#create_user"
@@ -19,7 +24,6 @@ MediaUploader::Application.routes.draw do
   get '/login' => 'sessions#new'
   post "login" => "sessions#login"
   delete 'logout' => 'sessions#destroy'
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -135,7 +135,7 @@ h1 {
 }
 
 label {
-  display: block;
+  display: inline-block;
   padding-bottom: 5px;
   line-height: initial;
 }
@@ -170,4 +170,13 @@ label {
 }
 .alert.alert-error {
     background: #FF003B;
+}
+
+.admin-access {
+  text-align: right;
+}
+
+.admin-access .form-btn{
+  display: initial;
+  width: 150px;
 }

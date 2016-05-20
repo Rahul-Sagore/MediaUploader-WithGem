@@ -18,11 +18,11 @@
 				File Name
 			</div>
 			<div class="col col-6 bold text-center">
-				<% if @current_user[:role] != 'admin' %>
+				<% if !current_user.admin? %>
 					Action
 				<% end %>
-				<% if @current_user[:role] == 'admin' %>
-					User's Id
+				<% if current_user.admin? %>
+					UserId (Uploader)
 				<% end %>
 			</div>
 		</div>
@@ -37,10 +37,11 @@
 				<%= medium[:filename] %>
 			</div>
 			<div class="col col-6 text-center">
-				<% if @current_user[:role] != 'admin' %>
+				<% if !current_user.admin? %>
+					<%= link_to 'Download', {:controller => "home", :action => "download", :media => medium } %> |
 					<%= link_to 'Delete', medium, :confirm => 'Are you sure?', :method => :delete %>
 				<% end %>
-				<% if @current_user[:role] == 'admin' %>
+				<% if current_user.admin? %>
 					<%= medium[:user_id] %>
 				<% end %>
 			</div>
