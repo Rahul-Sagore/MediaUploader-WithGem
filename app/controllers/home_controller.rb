@@ -13,15 +13,19 @@ class HomeController < ApplicationController
   end
 
   def upload
-  	@media = Medium.new
-  	file_obj = params[:new_media][:media_file]
+  	if !params[:new_media].nil?
+	  	@media = Medium.new
+	  	file_obj = params[:new_media][:media_file]
 
-  	if @media.upload_file(file_obj, current_user.id)
-  		flash[:success] = "File Successfully uploaded"
-  	else
-  		@media.errors.each do |key, val|
-  			flash[key] = val
-  		end
+	  	if @media.upload_file(file_obj, current_user.id)
+	  		flash[:success] = "File Successfully uploaded"
+	  	else
+	  		@media.errors.each do |key, val|
+	  			flash[key] = val
+	  		end
+			end
+		else
+			flash[:error] = "Please select file first!"
 		end
 
 		redirect_to :action => "index"
