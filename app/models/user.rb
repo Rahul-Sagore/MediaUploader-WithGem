@@ -10,4 +10,11 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
 	has_many :mediums
+
+	after_save :after_save
+
+	def after_save
+		system 'mkdir', '-p', Rails.root.join('public', 'images/uploads/', self.id.to_s)
+	end
+
 end
