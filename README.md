@@ -2,6 +2,12 @@
 
 File/Media Upload in Rails. Personalization, Authentication, Authorized access.
 
+Gems used :
+
+File Upload gem => carrierwave
+
+User Authentication => Devise
+
 ### SETUP
 
 1. cd into repo
